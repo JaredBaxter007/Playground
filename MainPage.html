@@ -1,0 +1,143 @@
+%%[
+
+var @Name,@Address,@National_Id,@Image_URL
+
+SET @Name = Trim(RequestParameter("Name"))
+SET @Address = RequestParameter("Address")
+SET @National_Id = RequestParameter("National ID")
+
+SET @checkExisting = ROWCOUNT(LookupRows('Chipsy_Egypt_FormInputs', 'National ID', @National_Id))
+
+IF NOT EMPTY(@checkExisting) AND @checkExisting > 0 THEN
+SET @status = 1
+
+]%%
+
+<script>
+  window.location.href = 'https://cloud.email-pepsico.com/dev-ChipsyEgypt-Submit?status=%%=v(@status)=%%'
+</script>
+
+%%[
+
+ELSEIF RequestParameter("submit") == "submit" AND @checkExisting == 0 THEN
+
+SET @status = 0
+SET @up = UpsertData("Chipsy_Egypt_FormInputs", 1, "National ID", @National_Id, "Name", @Name,
+"Address", @Address)
+
+]%%
+
+<script>
+  window.location.href = 'https://cloud.email-pepsico.com/dev-ChipsyEgypt-Submit?status=%%=v(@status)=%%'
+</script>
+
+%%[ ENDIF ]%%
+
+<title>Sign Up!</title>
+
+<div style="overflow-x:auto;" align="center">
+
+  <form method="post">
+
+    <table cellpadding="0" cellspacing="0" class="center" width="380px">
+      <tr>
+        <td><br>
+
+          <div class="form-group">
+            <label class="control-label">الإسم <span style="color :Red">*</span></label>
+            <input type="text" required="required" class="form-control" placeholder="" id="Name1" name="Name" size="30"
+              minlength="3" maxlength="50">
+          </div>
+
+          <br>
+
+          <div class="form-group">
+            <label class="control-label">العنوان <span style="color :Red">*</span></label>
+
+            <table>
+              <tr>
+                <td>
+                  <input style="float:right;width:330px" type="text" required="required" class="form-control"
+                    placeholder="" name="Address" id="Address">
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <br>
+
+          <div class="form-group">
+            <label class="control-label">الرقم القومي<span style="color :Red">*</span>
+            </label>
+            <input type="Text" required="required" class="form-control" placeholder="" id="National ID"
+              name="National ID">
+          </div>
+
+          <br><br>
+
+          يرجى تحميل نسخة من بطاقة الهوية الخاصة بك
+          <span style="color :Red">*</span>
+          <br><br>
+          <input id="file" type="file" accept="image/*" required="required">
+          <br><br>
+          <button id="button" type="button">Upload</button><br><br>
+
+          <script runat="client">
+            document.getElementById("button")
+              .addEventListener("click", function () {
+                var files = document.getElementById("file").files;
+                if (files.length > 0) {
+                  getBase64(files[0]);
+                }
+              });
+
+            function getBase64(file) {
+              var reader = new FileReader();
+              reader.readAsDataURL(file);
+              reader.onload = function () {
+
+                //prepare data to pass to processing page 
+                var fileEncoded = reader.result;
+                var base64enc = fileEncoded.split(";base64,")[1];
+                var fullFileName = document.getElementById("file").files[0].name;
+                var fileName = fullFileName.split(".")[0];
+                var assetName = fullFileName.split(".")[1];
+
+                fetch("https://cloud.email-pepsico.com/dev-ChipsyEgypt-Submit",  //provide URL of the processing page
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                      base64enc: base64enc,
+                      fileName: fileName,
+                      assetName: assetName
+                    })
+                  })
+                  .then(function (res) {
+                    window.alert("Success!");
+                  })
+                  .catch(function (err) {
+                    window.alert("Error!");
+                  });
+              };
+              reader.onerror = function (error) {
+                console.log('Error: ', error);
+              };
+            }
+          </script>
+
+          <br>
+
+
+          <input type="submit" id="submit" name="submit" value="submit"
+            style="font-size: 16pt; line-height: 1; font-family: Helvetica, Arial, sans-serif; font-weight: 700; width:100%">
+
+        </td>
+      </tr>
+    </table>
+
+  </form>
+
+</div>

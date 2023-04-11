@@ -1,0 +1,92 @@
+<script runat="server">
+  Platform.Load("Core", "1");
+  try {
+    //fetch posted data
+    var jsonData = Platform.Request.GetPostData();
+    var obj = Platform.Function.ParseJSON(jsonData);
+
+    //prepare data for API call
+    var base64enc = obj.base64enc;
+    var fileName = obj.fileName;
+    var assetName = obj.assetName;
+
+    //match asset type with uploaded file (https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-apis.meta/mc-apis/base-asset-types.htm)
+    var assetTypes = { jpeg: 22, jpg: 23, png: 28 };
+
+    var assetTypeID = assetTypes[assetName];
+
+    //authenticate to get access token
+    var authEndpoint = 'https://mc09k--cgr23hr8f62rxy88m7y7y.auth.marketingcloudapis.com/'
+
+    //cloud.email-pepsico
+    //add authentication endpoint
+    var payload = {
+      client_id: "kqgiao4trpsqicw37th4g3dp", //pass Client ID
+      client_secret: "TVMYfdXz7TagN8tCpjMaW4Be", //pass Client Secret
+      grant_type: "client_credentials"
+    };
+    var url = 'https://mc09k--cgr23hr8f62rxy88m7y7y.auth.marketingcloudapis.com/v2/token'
+
+    var contentType = 'application/json'
+
+    var accessTokenRequest = HTTP.Post(url, contentType, Stringify(payload));
+    if (accessTokenRequest.StatusCode == 200) {
+      var tokenResponse = Platform.Function.ParseJSON(accessTokenRequest.Response[0]);
+      var accessToken = tokenResponse.access_token
+      var rest_instance_url = tokenResponse.rest_instance_url
+    }
+    //make api call to create asset   
+    if (base64enc != null) {
+      var headerNames = ["Authorization"];
+      var headerValues = ["Bearer " + accessToken];
+      var jsonBody = {
+        "name": fileName,
+        "assetType": {
+          "name": assetName,
+          "id": assetTypeID
+        },
+        "file": base64enc,
+        "category": { "id": 91751 } // ye folder ka id h so ye line hata bhi sakta//
+      };
+
+      var requestUrl = "https://mc09k--cgr23hr8f62rxy88m7y7y.rest.marketingcloudapis.com/asset/v1/content/assets"
+      //cloud.email-pepsico
+
+      var createAsset = HTTP.Post(requestUrl, contentType, Stringify(jsonBody), headerNames, headerValues);
+      var respo = createAsset.Response.toString();
+      var res = Platform.Function.ParseJSON(respo);
+      var imgURL = res.fileProperties.publishedURL;
+      var myDE = DataExtension.Init("00C125C2-7FF3-4B75-B3A6-733CB274F471");
+      //Replace with the external key of your data extension - [DE SHOULD NOT HAVE A PRIMARY KEY]
+      myDE.Rows.Add({ FileURL: imgURL });
+      //Replace "FileURL" with the column name from your data extension
+    }
+
+  } catch (error) {
+    Write("<br>error: " + Stringify(error));
+  }
+</script>
+
+<title>Thank You!</title>
+
+<center>
+
+  %%[ SET @status = RequestParameter('status') ]%%
+
+  %%[ IF @status == 1 THEN ]%%
+
+  <h1>
+    <p style="color:#000000;font-size:40px;">You have already submitted the details. Thank You!!
+    </p>
+  </h1>
+
+  %%[ ELSEIF @status == 0 THEN ]%%
+
+  &nbsp;<h1>
+    <p style="color:#000000;font-size:40px;">Your submission has been recored. Thank You!!
+    </p>
+  </h1>
+
+  %%[ ENDIF ]%%
+
+</center>
