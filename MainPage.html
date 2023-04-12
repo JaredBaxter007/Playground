@@ -6,7 +6,7 @@ SET @Name = Trim(RequestParameter("Name"))
 SET @Address = RequestParameter("Address")
 SET @National_Id = RequestParameter("National ID")
 
-SET @checkExisting = ROWCOUNT(LookupRows('Chipsy_Egypt_FormInputs', 'National ID', @National_Id))
+SET @checkExisting = ROWCOUNT(LookupRows('Chipsy_Egypt_FormInputs', 'NationalID', @National_Id))
 
 IF NOT EMPTY(@checkExisting) AND @checkExisting > 0 THEN
 SET @status = 1
@@ -14,7 +14,7 @@ SET @status = 1
 ]%%
 
 <script>
-  window.location.href = 'https://cloud.email-pepsico.com/dev-ChipsyEgypt-Submit?status=%%=v(@status)=%%'
+  window.location.href = 'https://mc21-krm7w634rnq34j-vdr0vm38.pub.sfmc-content.com/0ohazbjsz2t?status=%%=v(@status)=%%'
 </script>
 
 %%[
@@ -22,13 +22,13 @@ SET @status = 1
 ELSEIF RequestParameter("submit") == "submit" AND @checkExisting == 0 THEN
 
 SET @status = 0
-SET @up = UpsertData("Chipsy_Egypt_FormInputs", 1, "National ID", @National_Id, "Name", @Name,
+SET @up = UpsertData("Chipsy_Egypt_FormInputs", 1, "NationalID", @National_Id, "Name", @Name,
 "Address", @Address)
 
 ]%%
 
 <script>
-  window.location.href = 'https://cloud.email-pepsico.com/dev-ChipsyEgypt-Submit?status=%%=v(@status)=%%'
+  window.location.href = 'https://mc21-krm7w634rnq34j-vdr0vm38.pub.sfmc-content.com/0ohazbjsz2t?status=%%=v(@status)=%%'
 </script>
 
 %%[ ENDIF ]%%
@@ -45,8 +45,7 @@ SET @up = UpsertData("Chipsy_Egypt_FormInputs", 1, "National ID", @National_Id, 
 
           <div class="form-group">
             <label class="control-label">الإسم <span style="color :Red">*</span></label>
-            <input type="text" required="required" class="form-control" placeholder="" id="Name1" name="Name" size="30"
-              minlength="3" maxlength="50">
+            <input type="text" required="required" class="form-control" placeholder="" id="Name1" name="Name" size="30" minlength="3" maxlength="50">
           </div>
 
           <br>
@@ -57,8 +56,7 @@ SET @up = UpsertData("Chipsy_Egypt_FormInputs", 1, "National ID", @National_Id, 
             <table>
               <tr>
                 <td>
-                  <input style="float:right;width:330px" type="text" required="required" class="form-control"
-                    placeholder="" name="Address" id="Address">
+                  <input style="float:right;width:330px" type="text" required="required" class="form-control" placeholder="" name="Address" id="Address">
                 </td>
               </tr>
             </table>
@@ -69,8 +67,7 @@ SET @up = UpsertData("Chipsy_Egypt_FormInputs", 1, "National ID", @National_Id, 
           <div class="form-group">
             <label class="control-label">الرقم القومي<span style="color :Red">*</span>
             </label>
-            <input type="Text" required="required" class="form-control" placeholder="" id="National ID"
-              name="National ID">
+            <input type="Text" required="required" class="form-control" placeholder="" id="National ID" name="National ID">
           </div>
 
           <br><br>
@@ -103,7 +100,7 @@ SET @up = UpsertData("Chipsy_Egypt_FormInputs", 1, "National ID", @National_Id, 
                 var fileName = fullFileName.split(".")[0];
                 var assetName = fullFileName.split(".")[1];
 
-                fetch("https://cloud.email-pepsico.com/dev-ChipsyEgypt-Submit",  //provide URL of the processing page
+                fetch("https://mc21-krm7w634rnq34j-vdr0vm38.pub.sfmc-content.com/0ohazbjsz2t",  //provide URL of the processing page
                   {
                     method: "POST",
                     headers: {
@@ -131,8 +128,7 @@ SET @up = UpsertData("Chipsy_Egypt_FormInputs", 1, "National ID", @National_Id, 
           <br>
 
 
-          <input type="submit" id="submit" name="submit" value="submit"
-            style="font-size: 16pt; line-height: 1; font-family: Helvetica, Arial, sans-serif; font-weight: 700; width:100%">
+          <input type="submit" id="submit" name="submit" value="submit" style="font-size: 16pt; line-height: 1; font-family: Helvetica, Arial, sans-serif; font-weight: 700; width:100%">
 
         </td>
       </tr>
