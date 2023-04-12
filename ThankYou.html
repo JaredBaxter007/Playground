@@ -16,16 +16,16 @@
     var assetTypeID = assetTypes[assetName];
 
     //authenticate to get access token
-    var authEndpoint = 'https://mc09k--cgr23hr8f62rxy88m7y7y.auth.marketingcloudapis.com/'
+    var authEndpoint = 'https://mc21-krm7w634rnq34j-vdr0vm38.auth.marketingcloudapis.com/'
 
     //cloud.email-pepsico
     //add authentication endpoint
     var payload = {
-      client_id: "", //pass Client ID
-      client_secret: "", //pass Client Secret
+      client_id: "va5l7vc06r6rm72gs1jpum7v", //pass Client ID
+      client_secret: "6QQUR5TPRUFd0CRrVmlGhdiU", //pass Client Secret
       grant_type: "client_credentials"
     };
-    var url = 'https://mc09k--cgr23hr8f62rxy88m7y7y.auth.marketingcloudapis.com/v2/token'
+    var url = 'https://mc21-krm7w634rnq34j-vdr0vm38.auth.marketingcloudapis.com/v2/token'
 
     var contentType = 'application/json'
 
@@ -46,10 +46,10 @@
           "id": assetTypeID
         },
         "file": base64enc,
-        "category": { "id": 91751 } // ye folder ka id h so ye line hata bhi sakta//
+        "category": { "id": 2195965 } // ye folder ka id h so ye line hata bhi sakta//
       };
 
-      var requestUrl = "https://mc09k--cgr23hr8f62rxy88m7y7y.rest.marketingcloudapis.com/asset/v1/content/assets"
+      var requestUrl = "https://mc21-krm7w634rnq34j-vdr0vm38.rest.marketingcloudapis.com/asset/v1/content/assets"
       //cloud.email-pepsico
 
       var createAsset = HTTP.Post(requestUrl, contentType, Stringify(jsonBody), headerNames, headerValues);
