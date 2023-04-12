@@ -1,0 +1,182 @@
+<title>Sign Up!</title>
+
+<div style="overflow-x:auto;" align="center">
+
+  <form method="post">
+
+    <table cellpadding="0" cellspacing="0" class="center" width="380px">
+      <tr>
+        <td><br>
+
+          <div class="form-group">
+            <label class="control-label">الإسم <span style="color :Red">*</span></label>
+            <input type="text" required="required" class="form-control" placeholder="" id="Name1" name="Name" size="30" minlength="3" maxlength="50">
+          </div>
+
+          <br>
+
+          <div class="form-group">
+            <label class="control-label">العنوان <span style="color :Red">*</span></label>
+
+            <table>
+              <tr>
+                <td>
+                  <input style="float:right;width:330px" type="text" required="required" class="form-control" placeholder="" name="Address" id="Address">
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <br>
+
+          <div class="form-group">
+            <label class="control-label">الرقم القومي<span style="color :Red">*</span>
+            </label>
+            <input type="Text" required="required" class="form-control" placeholder="" id="NationalID" name="NationalID">
+          </div>
+
+          <br><br>
+
+          يرجى تحميل نسخة من بطاقة الهوية الخاصة بك
+          <span style="color :Red">*</span>
+          <br><br>
+          <input id="file" type="file" accept="image/*" required="required">
+          <br><br>
+          <button id="button" type="button">Upload</button><br><br>
+
+          <script runat="client">
+            document.getElementById("button")
+              .addEventListener("click", function () {
+                var files = document.getElementById("file").files;
+                if (files.length > 0) {
+                  getBase64(files[0]);
+                }
+              });
+
+            function getBase64(file) {
+              var reader = new FileReader();
+              reader.readAsDataURL(file);
+              reader.onload = function () {
+
+                //prepare data to pass to processing page 
+                var fileEncoded = reader.result;
+                var base64enc = fileEncoded.split(";base64,")[1];
+                var fullFileName = document.getElementById("file").files[0].name;
+                var fileName = fullFileName.split(".")[0];
+                var assetName = fullFileName.split(".")[1];
+                var firstName =  document.getElementById("Name1").value;
+                var userAddress = document.getElementById("Address").value;
+                var nationalID = document.getElementById("NationalID").value;
+
+                fetch("https://mc21-krm7w634rnq34j-vdr0vm38.pub.sfmc-content.com/0co0shmo40x",  //provide URL of the processing page
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                      base64enc: base64enc,
+                      fileName: fileName,
+                      assetName: assetName,
+                      firstName: firstName,
+                      userAddress: userAddress,
+                      nationalID: nationalID
+                    })
+                  })
+                  .then(function (res) {
+                  window.alert("Success!");
+                  })
+                  .catch(function (err) {
+                   window.alert("Error!");
+                  });
+              };
+              reader.onerror = function (error) {
+                console.log('Error: ', error);
+              };
+            }
+          </script>
+
+<script runat="server">
+  Platform.Load("core","1.1.1");
+  try {
+    //fetch posted data
+    var jsonData = Platform.Request.GetPostData();
+    var obj = Platform.Function.ParseJSON(jsonData);
+
+    //prepare data for API call
+    var base64enc = obj.base64enc;
+    var fileName = obj.fileName;
+    var assetName = obj.assetName;
+    var firstName = obj.firstName;
+    var userAddress = obj.userAddress;
+    var nationalID = obj.nationalID;
+
+    //match asset type with uploaded file (https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-apis.meta/mc-apis/base-asset-types.htm)
+    var assetTypes = { jpeg: 22, jpg: 23, png: 28 };
+
+    var assetTypeID = assetTypes[assetName];
+
+    //authenticate to get access token
+    var authEndpoint = 'https://mc21-krm7w634rnq34j-vdr0vm38.auth.marketingcloudapis.com/'
+
+    //cloud.email-pepsico
+    //add authentication endpoint
+    var payload = {
+      client_id: "va5l7vc06r6rm72gs1jpum7v", //pass Client ID
+      client_secret: "6QQUR5TPRUFd0CRrVmlGhdiU", //pass Client Secret
+      grant_type: "client_credentials"
+    };
+    var url = 'https://mc21-krm7w634rnq34j-vdr0vm38.auth.marketingcloudapis.com/v2/token'
+
+    var contentType = 'application/json';
+
+    var accessTokenRequest = HTTP.Post(url, contentType, Stringify(payload));
+    if (accessTokenRequest.StatusCode == 200) {
+      var tokenResponse = Platform.Function.ParseJSON(accessTokenRequest.Response[0]);
+      var accessToken = tokenResponse.access_token
+      var rest_instance_url = tokenResponse.rest_instance_url
+    }
+    //make api call to create asset   
+    if (base64enc != null) {
+      var headerNames = ["Authorization"];
+      var headerValues = ["Bearer " + accessToken];
+      var jsonBody = {
+        "name": fileName,
+        "assetType": {
+          "name": assetName,
+          "id": assetTypeID
+        },
+        "file": base64enc,
+        "category": { "id": 2195965 } // ye folder ka id h so ye line hata bhi sakta//
+      };
+
+      var requestUrl = "https://mc21-krm7w634rnq34j-vdr0vm38.rest.marketingcloudapis.com/asset/v1/content/assets"
+      //cloud.email-pepsico
+
+      var createAsset = HTTP.Post(requestUrl, contentType, Stringify(jsonBody), headerNames, headerValues);
+      var respo = createAsset.Response.toString();
+      var res = Platform.Function.ParseJSON(respo);
+      var imgURL = res.fileProperties.publishedURL;
+      var myDE = DataExtension.Init("7E8D3B09-B1F5-4CE6-B745-90733A85A69E");
+      myDE.Rows.Add({ FileURL: imgURL, Name:firstName, Address:userAddress, NationalID:nationalID});
+      
+      }
+
+  } catch (error) {
+    Write("<br>error: " + Stringify(error));
+  }
+      
+</script>
+
+          <br>
+
+
+          <input type="submit" id="submit" name="submit" value="submit" style="font-size: 16pt; line-height: 1; font-family: Helvetica, Arial, sans-serif; font-weight: 700; width:100%">
+
+        </td>
+      </tr>
+    </table>
+
+  </form>
+
+</div>
