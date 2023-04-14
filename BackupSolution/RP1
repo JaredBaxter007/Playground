@@ -1,0 +1,135 @@
+%%[
+
+SET @Name = Trim(RequestParameter("Name"))
+SET @Address = RequestParameter("Address")
+SET @National_Id = RequestParameter("NationalID")
+SET @Verify = RequestParameter("Verify")
+
+IF @Verify == 'Verify' THEN
+SET @checkExisting = ROWCOUNT(LookupRows('Chipsy_Egypt_FormInputs', 'NationalID', @National_Id))
+
+IF @checkExisting > 0 THEN
+Redirect('https://mc21-krm7w634rnq34j-vdr0vm38.pub.sfmc-content.com/0ohazbjsz2t?status=1')
+ELSEIF @checkExisting == 0 THEN
+SET @link = concat("https://mc21-krm7w634rnq34j-vdr0vm38.pub.sfmc-content.com/nh154umg2p3?NationalID=", @National_Id)
+Redirect(@link)
+
+ENDIF
+ENDIF
+]%%
+
+<title>Sign Up!</title>
+
+<div style="overflow-x:auto;" align="center">
+
+  <form method="post">
+
+    <table cellpadding="0" cellspacing="0" class="center" width="380px">
+      <tr>
+        <td><br>
+
+          <div class="form-group">
+            
+            <div class="form-group">
+            <label class="control-label">الرقم القومي<span style="color :Red">*</span>
+            </label>
+            <input type="Text" required="required" class="form-control" placeholder="" id="NationalID" name="NationalID"> 
+            <input type="submit" id="Verify" name="Verify" value="Verify">
+          </div>
+            
+<div>
+  
+            
+            <br>
+            <label class="control-label">الإسم <span style="color :Red">*</span></label>
+            <input type="text" required="required" class="form-control" placeholder="" id="Name1" name="Name" size="30" minlength="3" maxlength="50" disabled="">
+          </div>
+
+          <br>
+
+          <div class="form-group">
+            <label class="control-label">العنوان <span style="color :Red">*</span></label>
+
+            <table>
+              <tr>
+                <td>
+                  <input style="float:right;width:330px" type="text" required="required" class="form-control" placeholder="" name="Address" id="Address" disabled="">
+                </td>
+              </tr>
+            </table>
+          </div>
+
+
+          <br><br>
+
+          يرجى تحميل نسخة من بطاقة الهوية الخاصة بك
+          <span style="color :Red">*</span>
+          <br><br>
+          <input id="file" type="file" accept="image/*" required="required" disabled="">
+          <br><br>
+          <button id="button" type="button" disabled="">Upload</button><br><br>
+
+          <script runat="client">
+ document.getElementById("button")
+              .addEventListener("click", function () {
+                var files = document.getElementById("file").files;
+                if (files.length > 0) {
+                  getBase64(files[0]);
+                }
+              });
+
+
+            function getBase64(file) {
+              var reader = new FileReader();
+              reader.readAsDataURL(file);
+              reader.onload = function () {
+
+                //prepare data to pass to processing page 
+                var fileEncoded = reader.result;
+                var base64enc = fileEncoded.split(";base64,")[1];
+                var fullFileName = document.getElementById("file").files[0].name;
+                var fileName = fullFileName.split(".")[0];
+                var assetName = fullFileName.split(".")[1];
+                var firstName =  document.getElementById("Name1").value;
+                var userAddress = document.getElementById("Address").value;
+                var nationalID = document.getElementById("NationalID").value;
+               
+
+        fetch("https://mc21-krm7w634rnq34j-vdr0vm38.pub.sfmc-content.com/0ohazbjsz2t",  //provide URL of the processing page
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                      base64enc: base64enc,
+                      fileName: fileName,
+                      assetName: assetName,
+                      firstName: firstName,
+                      userAddress: userAddress,
+                      nationalID: nationalID
+                    })
+                  })
+                  .then(function (res) {
+                  window.alert("Success!");
+                  })
+                  .catch(function (err) {
+                   window.alert("Error!");
+                  });
+              };
+              reader.onerror = function (error) {
+                console.log('Error: ', error);
+              };
+            }
+            
+          </script>
+
+<input type="submit" id="submit" name="submit" value="Submit" style="font-size: 16pt; line-height: 1; font-family: Helvetica, Arial, sans-serif; font-weight: 700; width:100%" disabled="">
+</div>
+        </td>
+      </tr>
+    </table>
+
+  </form>
+
+</div>
