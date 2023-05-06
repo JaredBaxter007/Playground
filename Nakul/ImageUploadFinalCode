@@ -1,0 +1,310 @@
+Main page
+
+
+
+
+
+<div style="overflow-x:auto;" width="95%">
+
+
+<h1 style="font-size:13px;text-align:center;"><u>إقرار وتعهد</u></h1>
+<p dir="rtl" style="font-size:13px;" lang="ar">
+  أقر انا بأنني اوافق على الظهور في المواد الدعائية الموصوفة أدناه والمعدة من قبل شركة شيبسي للصناعات الغذائية ش.م.م. ("الشركة") أو شركات الإعلان التي تتعاقد معها الشركة، كما أقر بحق الشركة في استغلال تلك المواد في التلفزيون والإذاعة والمطبوعات والصحف واللافتات الإعلانية الخارجية ووسائل الإعلان الإلكترونية ووسائل الإعلان سريعة الانتشار ووسائل التواصل الاجتماعي ومواد الترويج وأغلفة المنتجات واللافتات ووسائل العرض المختلفة سواء مادية أو الكترونية أو غير ذلك، وكذلك في وسائل الاتصال الداخلية والخارجية وأي وسائط أخرى، حالاً أو مستقبلاً، بداخل جمهورية مصر العربية وخارجها بجميع أنحاء العالم، وذلك وفقاً لمطلق تقدير الشركة ودون الحاجة الرجوع لي أو أخذ أي موافقة إضافية مني بخلاف توقيعي على هذا الإقرار.
+</p>
+<p dir="rtl" style="font-size:13px;" lang="ar">
+ كما اقر بمشاهدتي لتلك المواد الدعائية وموافقتي بالظهور في تلك المواد الدعائية بهذا الشكل والمضمون وبمنحى للشركة الحق في استخدام إسمي وصوتي وصورتي وآدائي في تلك المواد الدعائية وبالاتصال بها بكافة طرق الاستخدام ومنها على سبيل المثال لا الحصر: النشر في أي مواد إعلانية أو دعائية تخص الشركة عبر كافة وسائل النشر وعبر وسائط التواصل الاجتماعي والتليفزيون وغير ذلك، وكذلك الحق في طباعة ونشر وإنتاج نسخ من تلك المواد الدعائية، حالاً أو مستقبلاً، بداخل جمهورية مصر العربية وخارجها بجميع أنحاء العالم، وفقاً لمطلق تقدير الشركة ودون الرجوع لي أو أخذ موافقة إضافية مني بخلاف توقيعي على هذا الإقرار.
+</p>
+<p dir="rtl" style="font-size:13px;" lang="ar">
+ وأقر بتنازلي للشركة عن كافة حقوق الاستغلال المالي والحقوق المالية للمواد الدعائية للحد الأقصى الذي يسمح به القانون، تنازل نهائي وتام لا يجوز الرجوع فيه حالاً أو مستقبلاً، ويحق للشركة التصرف في حقوق الاستغلال المالي للمواد الدعائية وفقاً لمطلق تقديرها وإرادتها، حالاً أو مستقبلاً، بداخل جمهورية مصر العربية وخارجها بجميع أنحاء العالم، وذلك وفقاً لمطلق تقدير الشركة ودون الحاجة الرجوع لي أو أخذ أي موافقة إضافية مني بخلاف توقيعي على هذا الإقرار.
+</p>
+<p dir="rtl" style="font-size:13px;" lang="ar">
+ وهذا إقرار نهائي وتام منى بذلك لا يجوز الرجوع فيه حالاً أو مستقبلاً،
+</p><p>
+</p><p dir="rtl" style="font-size:13px;" lang="ar">
+المواد الدعائية: كافة المصنفات المسموعة والمرئية والفيديو والصور الثابتة والمتحركة والتسجيلات الصوتية والمواد الدعائية الورقية أو الرقمية المتعلقة بالحملة الدعائية المسماة "أغنية شيبسي و تامر حسني" والتي تنظمها شركة شيبسي للصناعات الغذائية ش.م.م.
+</p>
+<p dir="rtl" style="font-size:13px;" lang="ar">
+المقر بما جاء بعاليه: 
+</p><p>
+
+</p>
+</div>
+
+
+<title>Sign Up!</title>
+<div style="overflow-x:auto;" align="center">
+<form method="post">
+
+    <table class="center" width="95%" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><br>
+
+          <div class="form-group">
+            <label>الإسم<span style="color :Red">*</span></label>
+            <input dir="rtl" type="text" required="required" class="form-control" placeholder="" id="Name1" name="Name" size="30" minlength="3" maxlength="50" lang="ar">      
+          </div> 
+
+          <br>
+          
+           
+          <div class="form-group">
+               <label class="control-label">العنوان <span style="color :Red">*</span></label>
+                  <input dir="rtl" type="text" required="required" class="form-control" placeholder="" name="Address" id="Address" lang="ar">
+             </div>
+
+          <br>
+
+         
+          
+          <div class="form-group">
+            <label class="control-label">رقم الهاتف<span style="color :Red">*</span></label>
+          <input type="tel" required="required" class="form-control" placeholder="" id="PhoneNo" name="PhoneNo" minlength="10" maxlength="10" pattern="^\+?[0-9]+">
+                    
+            </div> 
+            
+            <br>
+          
+          <div class="form-group">
+            <label class="control-label">الرقم القومي<span style="color :Red">*</span> </label>
+                <input dir="rtl" type="Text" required="required" class="form-control" placeholder="" id="NationalID" name="NationalID" minlength="14" maxlength="14" lang="ar">
+           
+             </div> <br>
+
+       
+            
+            <label class="control-label"> يرجى تحميل نسخة من بطاقة الهوية الخاصة بك<span style="color :Red">*</span></label>
+
+          
+          <input style="float: right;" id="file" type="file" accept="image/*" required="required"><br><br>  
+         
+          
+          <br>
+
+ 
+                      <input type="checkbox" style="float: right; margin-top: 5px;" required="required" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Ts &amp; Cs and Privacy Policy' : '');" class="" placeholder="" id="PrivacyPolicy" value="True" name="PrivacyPolicy">
+         <div class="" style="margin-left: 25px;">
+         
+         <label class="" style="font-size: 10pt; line-height: 1; font-family: Helvetica, Arial, sans-serif; font-weight: 200;line-height: 1.5;">&nbsp; اوافق على الشروط والأحكام<a href="https://platformassets.wspprod.com/pepsiredemptionpolicy-static/privacypolicy-ar.html" target="_blank" alias="Termsandconditions"><u><b> سياسة الخصوصية</b></u></a> <span style="color :Red">*</span></label>
+   </div><br>
+                    
+  
+  <input type="checkbox" style="float: right; margin-top: 5px;" class="" placeholder="" id="smsoptin" name="smsoptin"> 
+    
+            <div class="" style="margin-left: 25px;">
+                <label class="" style="font-size: 10pt; line-height: 1; font-family: Helvetica, Arial, sans-serif; font-weight: 200;line-height: 1.5;">اود ان اسمع من منتجات بيبسيكوعبر الرسائل النصية
+            &nbsp;</label>
+            </div><br>
+      
+          
+
+      
+          <button style="font-size:25px" id="button" type="submit">Submit</button><br><br>
+
+        <script runat="client">
+
+          
+   var form = document.querySelector('form');
+var button = document.querySelector('button');
+    var mobilenumber = document.getElementById("PhoneNo");
+form.addEventListener("submit", onFormSubmit, false);
+function onFormSubmit(e) {
+ e.preventDefault();
+ var xhr = new XMLHttpRequest();
+ xhr.onload = function () {
+  if (xhr.status >= 200 && xhr.status < 300) {
+   var response = JSON.parse(xhr.response);
+   if(response['rowcount'] != 0) {
+    alert('لقد قمت بتقديم التفاصيل الخاصة بك من قبل');
+   } else {  
+       var files = document.getElementById("file").files;
+                       if (files.length > 0) {
+               var asset = document.getElementById("file").files[0].name;
+                         var assetType = asset.split(".")[1];
+                  if ( assetType == 'jpeg' || assetType =='jpg' || assetType =='png')
+                  {
+                  getBase64(files[0]);
+                    form.submit();
+                  }
+                 else {
+                    alert('Only png, jpeg and jpg formats are allowed. ');
+                  }
+                         
+                }
+     
+   }
+  } else {
+   alert('The request failed!');
+  }
+ };
+ xhr.open('POST', 'https://cloud.email-pepsico.com/ChipsyEgyptDuplicate?mobilenumber=' + mobilenumber.value);    
+ xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+ xhr.send();
+}       
+     
+ 
+function getBase64(file) {
+  var reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function () {
+
+    //prepare data to pass to processing page 
+    var fileEncoded = reader.result;
+    var base64enc = fileEncoded.split(";base64,")[1];
+    var fullFileName = document.getElementById("file").files[0].name;
+    var fileName = fullFileName.split(".")[0];
+    var assetName = fullFileName.split(".")[1];
+    var fileNameNew= fileName + uuidv4();
+    
+    var nID = document.getElementById("NationalID").value;
+    var nationalID = encodeURI(nID);
+    var fName =  document.getElementById("Name1").value;
+    var firstName = encodeURI(fName);
+    var uAddress = document.getElementById("Address").value;
+    var userAddress = encodeURI(uAddress);
+    var PhoneNo = document.getElementById("PhoneNo").value;
+    var PrivacyPolicy = document.getElementById("PrivacyPolicy").checked;
+    var smsoptin = document.getElementById("smsoptin").checked;
+
+    fetch("https://cloud.email-pepsico.com/MainPage",  //provide URL of the processing page
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          base64enc: base64enc,
+          fileName: fileNameNew,
+          assetName: assetName,
+          firstName: firstName,
+          userAddress: userAddress,
+          nationalID: nationalID,
+          PhoneNo : PhoneNo,
+          PrivacyPolicy : PrivacyPolicy,
+          smsoptin : smsoptin
+        })
+      })
+      .then(function (res) {
+      window.alert("Success!");
+      })
+      .catch(function (res) {
+       window.alert("Successfully submitted");
+      });
+  };
+  reader.onerror = function (error) {
+    //console.log('Error: ', error);
+  };
+}
+          
+            function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+}       
+
+</script>
+   
+   
+<script runat="server">
+  Platform.Load("core","1.1.1");
+  try {
+    //fetch posted data
+    var jsonData = Platform.Request.GetPostData();
+    var obj = Platform.Function.ParseJSON(jsonData);
+
+    //prepare data for API call
+    var base64enc = obj.base64enc;
+    var fileName = obj.fileName;
+    var assetName = obj.assetName;
+    var firstName = obj.firstName;
+    var userAddress = obj.userAddress;
+    var nationalID = obj.nationalID;
+     var nationalID = decodeURI(nationalID);
+    var firstName = decodeURI(firstName);
+    var userAddress = decodeURI(userAddress);
+    var PhoneNo = obj.PhoneNo;
+    var PrivacyPolicy = obj.PrivacyPolicy;
+    var smsoptin = obj.smsoptin;
+
+    //match asset type with uploaded file (https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-apis.meta/mc-apis/base-asset-types.htm)
+    var assetTypes = { jpeg: 22, jpg: 23, png: 28 };
+
+    var assetTypeID = assetTypes[assetName];
+
+    //authenticate to get access token
+    var authEndpoint = 'https://mc09k--cgr23hr8f62rxy88m7y7y.auth.marketingcloudapis.com/'
+    
+
+    //cloud.email-pepsico
+    //add authentication endpoint
+    var payload = {
+      client_id: "ut8wbciyhe0c924xssly7ihh", //pass Client ID
+      client_secret: "HAs6lert4OpjbhE1hpQdE4sm", //pass Client Secret
+      grant_type: "client_credentials"
+    };
+    var url = 'https://mc09k--cgr23hr8f62rxy88m7y7y.auth.marketingcloudapis.com/v2/token'
+
+    var contentType = 'application/json';
+
+    var accessTokenRequest = HTTP.Post(url, contentType, Stringify(payload));
+    if (accessTokenRequest.StatusCode == 200) {
+      var tokenResponse = Platform.Function.ParseJSON(accessTokenRequest.Response[0]);
+      var accessToken = tokenResponse.access_token
+      var rest_instance_url = tokenResponse.rest_instance_url
+    }
+    //make api call to create asset   
+    if (base64enc != null) {
+      var headerNames = ["Authorization"];
+      var headerValues = ["Bearer " + accessToken];
+      var jsonBody = {
+        "name": fileName,
+        "assetType": {
+          "name": assetName,
+          "id": assetTypeID
+        },
+        "file": base64enc,
+        "category": { "id": 94027 }
+      };
+
+      var requestUrl = "https://mc09k--cgr23hr8f62rxy88m7y7y.rest.marketingcloudapis.com/asset/v1/content/assets"
+      //cloud.email-pepsico
+
+      var createAsset = HTTP.Post(requestUrl, contentType, Stringify(jsonBody), headerNames, headerValues);
+      var respo = createAsset.Response.toString();
+      var res = Platform.Function.ParseJSON(respo);
+      var imgURL = res.fileProperties.publishedURL;
+      var myDE = DataExtension.Init("B601364B-6E37-4ADD-A4FD-7D626F9938C9");
+      myDE.Rows.Add({ Image_URL: imgURL, Name:firstName, Address:userAddress, NationalID:nationalID, PhoneNo:PhoneNo, Privacy_Policy_Optin:PrivacyPolicy, SMS_Optin:smsoptin});
+      
+      }
+
+  } catch (error) {
+    Write("<br>error: " + Stringify(error));
+  }
+      
+</script>
+
+          <br>
+
+
+         
+        </td>
+      </tr>
+    </table>
+
+  </form>
+
+</div>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Duplicate page
+
+%%[
+
+SET @mobilenumber=RequestParameter("mobilenumber")
+Set @rows=LookupRows("Chipsy_Egypt_FormInputs","PhoneNo",@mobilenumber)
+SET @rowscount=rowcount(@rows)
+]%%
+{
+ "rowcount" : %%=v(@rowscount)=%%
+}
