@@ -1,0 +1,39 @@
+%%[
+
+set @submit = RequestParameter("submit")
+set @PhoneNo=RequestParameter("PhoneNo")
+set @NationalID=RequestParameter("NationalID")
+set @Name=RequestParameter("Name")
+
+IF @submit == 'Submit' THEN
+
+SET @checkExisting = RowCount(LookupRows('Chipsy_Egypt_FormInputs','PhoneNo',@PhoneNo))
+
+IF NOT EMPTY(@checkExisting) AND @checkExisting == 0 THEN 
+set @insertCount = InsertData
+('Chipsy_Egypt_FormInputs',
+'NationalID',@NationalID,
+'PhoneNo',@PhoneNo,
+'Name',@Name)
+  
+  ]%%
+
+<script>
+  alert("Record Submitted!");
+</script>
+
+%%[
+
+ELSEIF NOT EMPTY(@checkExisting) AND @checkExisting > 0 THEN
+
+  ]%%
+
+<script>
+  alert("Record already exists!");
+</script>
+
+%%[
+endif
+endif
+
+]%%
